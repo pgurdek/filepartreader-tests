@@ -10,42 +10,35 @@ class FilePartReader {
     private Integer toLine;
 
     FilePartReader() {
-
         this.filePath = "test_data.txt";
         this.fromLine = 1;
         this.toLine = 1;
-
     }
 
     void setup(String filepath, Integer fromLine, Integer toLine) throws FileNotFoundException, IllegalArgumentException {
-
         setFilePath(filepath);
         if (toLine < fromLine || fromLine < 1) {
             throw new IllegalArgumentException();
         }
         setFromLine(fromLine);
         setToLine(toLine);
-
     }
 
     String readLines() throws IOException, ArrayIndexOutOfBoundsException {
-
         String output = "";
         String lines[] = read().split("\\r?\\n");
         if (lines.length < getToLine()) {
             throw new ArrayIndexOutOfBoundsException();
         }
+
         for (Integer line = getFromLine() - 1; line < getToLine();
              line++) {
             output += lines[line] + "\n";
         }
-
         return output;
-
     }
 
     private String read() throws IOException {
-
         String line;
         StringBuilder stringBuilder = new StringBuilder();
         String ls = System.getProperty("line.separator");
@@ -58,9 +51,7 @@ class FilePartReader {
             }
 
             return stringBuilder.toString();
-
         }
-
     }
 
     private Integer getFromLine() {
