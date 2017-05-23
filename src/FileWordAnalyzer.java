@@ -28,25 +28,18 @@ public class FileWordAnalyzer {
 
     ArrayList<String> wordsContainingSubString(String substring) throws IOException {
         ArrayList<String> words = new ArrayList<>(Arrays.asList(this.filePartReader.readLines().split("\\r?\\n?\\s+")));
-        if (words.size() <= 0) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
         words.removeIf(word -> !word.contains(substring));
         return words;
     }
 
     ArrayList<String> wordsArePalindrome() throws IOException {
         ArrayList<String> words = new ArrayList<>(Arrays.asList(this.filePartReader.readLines().split("\\r?\\n?\\s+")));
-        if (words.size() <= 0) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
         for (Iterator<String> iterator = words.iterator(); iterator.hasNext(); ) {
             char[] word = iterator.next().toCharArray();
             if (!isaPalindromic((word))) {
                 iterator.remove();
             }
         }
-        System.out.println(words);
         return words;
     }
 
